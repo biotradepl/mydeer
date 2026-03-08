@@ -57,25 +57,28 @@
       overflow: hidden;
     }
 
-    /* hero background: product lifestyle photo */
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image: url('Cover-stv-42.jpg');
+      background-image: url('9ed22499-997d-4cca-ac19-c81b4c8501a3.png');
       background-size: cover;
-      background-position: center 45%;
+      background-position: center 35%;
       will-change: transform;
     }
 
+    /* heavy dark treatment so white text is always legible */
     .hero__overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(
-        165deg,
-        rgba(5,10,10,0.78) 0%,
-        rgba(5,10,10,0.42) 45%,
-        rgba(5,10,10,0.90) 100%
-      );
+      background:
+        linear-gradient(to bottom,
+          rgba(5,10,10,0.72) 0%,
+          rgba(5,10,10,0.52) 38%,
+          rgba(5,10,10,0.82) 100%),
+        linear-gradient(to right,
+          rgba(5,10,10,0.30) 0%,
+          transparent 50%,
+          rgba(5,10,10,0.30) 100%);
     }
 
     /* warm ember glow from below */
@@ -731,15 +734,12 @@
 
   <div class="hero__content">
 
-    <!-- Logo PNG — jeśli plik jest dostępny, pokaże logo graficzne;
-         w razie braku pliku zostanie wyświetlona wersja tekstowa -->
-    <div class="logo-wrap" id="logo-wrap">
-      <img
-        class="logo-img"
-        src="5ea9b011-02ec-4189-8273-0f3274aa08d3.png"
-        alt="MyDeer"
-        onerror="this.closest('#logo-wrap').innerHTML = logoFallback()"
-      />
+    <div class="logo-wrap">
+      <div class="logo-text">
+        <span class="logo-text__star">★</span>
+        <span class="logo-text__name">MyDeer</span>
+        <span class="logo-text__star">★</span>
+      </div>
     </div>
 
     <p class="claim">Born for Fire</p>
@@ -846,32 +846,33 @@
   </div>
 
   <div class="products__grid">
+    <!-- zimowa scena nocna — najbardziej spektakularna, zajmuje 7/12 kolumn -->
     <div class="pcard reveal">
-      <img class="pcard__img" src="Cover-stv-42.jpg"
-           alt="Palenisko MyDeer w ogrodzie" loading="lazy" />
+      <img class="pcard__img" src="117fce7d-e15a-4f35-b428-6075d2fb5090 (1).png"
+           alt="MyDeer — zimowa impreza przy ogniu" loading="lazy" />
       <div class="pcard__caption">
-        <p class="pcard__label">Stanowisko ogrodowe — lifestyle</p>
+        <p class="pcard__label">Cztery pory roku — Born for Fire</p>
       </div>
     </div>
     <div class="pcard reveal d1">
+      <img class="pcard__img" src="5ea9b011-02ec-4189-8273-0f3274aa08d3.png"
+           alt="MyDeer — palenisko na tarasie" loading="lazy" />
+      <div class="pcard__caption">
+        <p class="pcard__label">Kolekcja — stal kortenowska</p>
+      </div>
+    </div>
+    <div class="pcard reveal d2">
       <img class="pcard__img" src="IMG_0149.jpg"
            alt="Gotowanie na otwartym ogniu — MyDeer" loading="lazy" />
       <div class="pcard__caption">
         <p class="pcard__label">Gotowanie na ogniu</p>
       </div>
     </div>
-    <div class="pcard reveal d2">
-      <img class="pcard__img" src="STV39_cover.jpg"
-           alt="MyDeer STV39 — stal kortenowska" loading="lazy" />
-      <div class="pcard__caption">
-        <p class="pcard__label">STV39 — stal kortenowska</p>
-      </div>
-    </div>
     <div class="pcard reveal d3">
-      <img class="pcard__img" src="DSC_3113-768x512.jpg"
-           alt="Palenisko MyDeer — zdjęcie studyjne" loading="lazy" />
+      <img class="pcard__img" src="STV39_cover.jpg"
+           alt="MyDeer STV39 — studio" loading="lazy" />
       <div class="pcard__caption">
-        <p class="pcard__label">Seria studyjna</p>
+        <p class="pcard__label">STV39 — seria premium</p>
       </div>
     </div>
   </div>
@@ -918,17 +919,6 @@
 </footer>
 
 <script>
-/* =============================================
-   LOGO TEXT FALLBACK
-============================================= */
-function logoFallback() {
-  return `<div class="logo-text">
-    <span class="logo-text__star">★</span>
-    <span class="logo-text__name">MyDeer</span>
-    <span class="logo-text__star">★</span>
-  </div>`;
-}
-
 /* =============================================
    FIRE PARTICLE SYSTEM
 ============================================= */
