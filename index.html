@@ -485,6 +485,15 @@
     .pcard {
       position: relative;
       overflow: hidden;
+      min-height: 200px;
+    }
+
+    /* pcard i gallery__item są zawsze widoczne — nie ukrywamy obrazków przez reveal */
+    .pcard.reveal,
+    .gallery__item.reveal {
+      opacity: 1;
+      transform: none;
+      transition: none;
     }
 
     .pcard__img {
@@ -1210,11 +1219,23 @@
    REVEAL
 ============================================= */
 (function () {
+  function makeVisible(el) { el.classList.add('visible'); }
+
+  /* fallback: po 800ms wszystko co nie jest jeszcze widoczne — pokaż */
+  setTimeout(function () {
+    document.querySelectorAll('.reveal:not(.visible)').forEach(makeVisible);
+  }, 800);
+
+  if (!('IntersectionObserver' in window)) {
+    document.querySelectorAll('.reveal').forEach(makeVisible);
+    return;
+  }
+
   const io = new IntersectionObserver(entries => {
     entries.forEach(e => {
-      if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      if (e.isIntersecting) { makeVisible(e.target); io.unobserve(e.target); }
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.05, rootMargin: '0px 0px 120px 0px' });
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 })();
 
