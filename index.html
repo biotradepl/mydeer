@@ -64,9 +64,9 @@
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image: url('9ed22499-997d-4cca-ac19-c81b4c8501a3.png');
+      background-image: url('5ea9b011-02ec-4189-8273-0f3274aa08d3.png');
       background-size: cover;
-      background-position: center 35%;
+      background-position: center center;
       will-change: transform;
     }
 
@@ -75,13 +75,13 @@
       inset: 0;
       background:
         linear-gradient(to bottom,
-          rgba(5,10,10,0.75) 0%,
-          rgba(5,10,10,0.50) 40%,
-          rgba(5,10,10,0.88) 100%),
+          rgba(5,10,10,0.60) 0%,
+          rgba(5,10,10,0.30) 40%,
+          rgba(5,10,10,0.85) 100%),
         linear-gradient(to right,
-          rgba(5,10,10,0.28) 0%,
+          rgba(5,10,10,0.20) 0%,
           transparent 50%,
-          rgba(5,10,10,0.28) 100%);
+          rgba(5,10,10,0.20) 100%);
     }
 
     .hero__glow {
@@ -99,7 +99,7 @@
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 4rem 1.5rem 5rem;
+      padding: 4rem 1.5rem 10rem;
       max-width: 860px;
       width: 100%;
     }
@@ -551,6 +551,55 @@
     .ig-btn svg { flex-shrink: 0; }
 
     /* =============================================
+       GALLERY
+    ============================================= */
+    .gallery {
+      position: relative;
+      z-index: 2;
+      padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 2.5rem);
+      border-top: 1px solid var(--border);
+    }
+
+    .gallery__header {
+      text-align: center;
+      margin-bottom: clamp(1.8rem, 3vw, 3rem);
+    }
+
+    .gallery__grid {
+      columns: 3;
+      column-gap: 0.75rem;
+      max-width: 1320px;
+      margin: 0 auto;
+    }
+
+    .gallery__item {
+      break-inside: avoid;
+      margin-bottom: 0.75rem;
+      overflow: hidden;
+      display: block;
+    }
+
+    .gallery__item img {
+      width: 100%;
+      height: auto;
+      display: block;
+      filter: brightness(0.88) saturate(0.90);
+      transition: transform 0.85s cubic-bezier(.16,1,.3,1), filter 0.5s ease;
+    }
+
+    .gallery__item:hover img {
+      transform: scale(1.04);
+      filter: brightness(1) saturate(1.1);
+    }
+
+    @media (max-width: 900px) {
+      .gallery__grid { columns: 2; }
+    }
+    @media (max-width: 560px) {
+      .gallery__grid { columns: 1; }
+    }
+
+    /* =============================================
        CONTACT
     ============================================= */
     .contact {
@@ -977,6 +1026,40 @@
       </svg>
       Śledź nas na Instagramie
     </a>
+  </div>
+</section>
+
+<!-- =============================================
+     GALERIA
+============================================= -->
+<section class="gallery">
+  <div class="gallery__header">
+    <p class="eyebrow reveal">MyDeer w akcji</p>
+    <h2 class="section-title reveal d1">Galeria</h2>
+  </div>
+
+  <div class="gallery__grid">
+    <div class="gallery__item reveal">
+      <img src="DSC_3113-768x512.jpg" alt="MyDeer — palenisko" loading="lazy" />
+    </div>
+    <div class="gallery__item reveal d1">
+      <img src="5-2-768x512.jpg" alt="MyDeer — kolekcja" loading="lazy" />
+    </div>
+    <div class="gallery__item reveal d2">
+      <img src="STV39_cover.jpg" alt="MyDeer — okładka STV39" loading="lazy" />
+    </div>
+    <div class="gallery__item reveal d3">
+      <img src="DSC_3115-768x512.jpg" alt="MyDeer — detal" loading="lazy" />
+    </div>
+    <div class="gallery__item reveal">
+      <img src="6-2-768x512.jpg" alt="MyDeer — palenisko w ogrodzie" loading="lazy" />
+    </div>
+    <div class="gallery__item reveal d1">
+      <img src="cover_STV36.jpg" alt="MyDeer — okładka STV36" loading="lazy" />
+    </div>
+    <div class="gallery__item reveal d2">
+      <img src="117fce7d-e15a-4f35-b428-6075d2fb5090 (1).png" alt="MyDeer — render produktu" loading="lazy" />
+    </div>
   </div>
 </section>
 
