@@ -195,11 +195,50 @@
       animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.88s forwards;
     }
 
-    .signup-wrap__hint {
-      font-size: 0.82rem;
+    /* reward badge nad formularzem */
+    .reward-badge {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: rgba(214,100,52,0.12);
+      border: 1px solid rgba(214,100,52,0.38);
+      padding: 0.9rem 1.2rem;
+      margin-bottom: 1rem;
+      text-align: left;
+    }
+
+    .reward-badge__icon {
+      font-size: 1.6rem;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+
+    .reward-badge__text {
+      line-height: 1.45;
+    }
+
+    .reward-badge__headline {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.95rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--orange);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+
+    .reward-badge__sub {
+      font-size: 0.8rem;
       font-weight: 300;
-      color: rgba(244,238,217,0.52);
-      margin-bottom: 0.9rem;
+      color: rgba(244,238,217,0.60);
+    }
+
+    .signup-wrap__hint {
+      font-size: 0.78rem;
+      font-weight: 300;
+      color: rgba(244,238,217,0.38);
+      margin-bottom: 0.7rem;
       line-height: 1.6;
     }
 
@@ -782,9 +821,13 @@
     </p>
 
     <div class="signup-wrap">
-      <p class="signup-wrap__hint">
-        Zostaw swój e-mail. W dniu otwarcia wyślemy Ci kod na zapas drewna gratis do pierwszego paleniska.
-      </p>
+      <div class="reward-badge">
+        <span class="reward-badge__icon">🪵</span>
+        <div class="reward-badge__text">
+          <span class="reward-badge__headline">Zapas drewna gratis — tylko dla pierwszych</span>
+          <span class="reward-badge__sub">Zostaw e-mail. W dniu otwarcia wyślemy kod na bezpłatny zapas drewna do pierwszego paleniska.</span>
+        </div>
+      </div>
       <form class="signup" id="signup-form" onsubmit="handleSignup(event)">
         <input
           class="signup__input"
