@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MyDeer — Born for Fire | Sklep Oficjalny</title>
-  <meta name="description" content="Mobilne paleniska i planche. Sprzedaż rusza 10 maja. Zapisz się i odbierz 20 worków brykietu gratis." />
+  <title>MyDeer — Born for Fire</title>
+  <meta name="description" content="Sprzedaż rusza 10 maja. Zapisz się i odbierz 20 worków brykietu grillowego 2kg + podpałka gratis." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet" />
 
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -17,8 +17,8 @@
       --orange: #C8541D;
       --black:  #111111;
       --white:  #FFFFFF;
-      --gray:   #F3F3F1;
-      --border: #E2E2DE;
+      --gray:   #F4F4F2;
+      --border: #E0E0DC;
     }
 
     body {
@@ -28,93 +28,27 @@
       overflow-x: hidden;
     }
 
-    /* ─── TOPBAR ─────────────────────────────────── */
-    .topbar {
-      background: var(--black);
-      color: rgba(255,255,255,0.70);
-      font-size: 0.72rem;
-      letter-spacing: 0.07em;
-      text-align: center;
-      padding: 0.55rem 1rem;
-      overflow: hidden;
-      white-space: nowrap;
-    }
-    .topbar strong { color: #fff; font-weight: 700; }
-    .topbar span   { margin: 0 1.4rem; opacity: 0.35; }
-
-    /* ─── HEADER ─────────────────────────────────── */
+    /* ─── HEADER ─── */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 200;
       background: var(--white);
       border-bottom: 1px solid var(--border);
-      display: grid;
-      grid-template-columns: 1fr auto 1fr;
-      align-items: center;
-      padding: 0 2.4rem;
-      height: 68px;
-    }
-
-    .nav {
-      display: flex;
-      align-items: center;
-      gap: 2rem;
-      list-style: none;
-    }
-
-    .nav a {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 0.82rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      text-decoration: none;
-      color: var(--black);
-      transition: color 0.2s;
-    }
-
-    .nav a:hover { color: var(--orange); }
-
-    .logo {
       display: flex;
       justify-content: center;
       align-items: center;
+      height: 72px;
+      padding: 0 2rem;
     }
 
-    .logo img {
+    header img {
       height: 46px;
       width: auto;
       display: block;
     }
 
-    .header-icons {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 1.3rem;
-    }
-
-    .header-icons a,
-    .header-icons button {
-      background: none;
-      border: none;
-      cursor: pointer;
-      color: var(--black);
-      display: flex;
-      align-items: center;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    .header-icons a:hover,
-    .header-icons button:hover { color: var(--orange); }
-
-    /* ─── HERO ───────────────────────────────────── */
+    /* ─── HERO ─── */
     .hero {
       position: relative;
-      height: calc(100vh - 68px - 32px);
-      min-height: 560px;
+      min-height: calc(100vh - 72px);
       display: flex;
       align-items: flex-end;
       justify-content: center;
@@ -133,10 +67,10 @@
       inset: 0;
       background: linear-gradient(
         180deg,
-        rgba(0,0,0,0.00) 0%,
-        rgba(0,0,0,0.10) 40%,
-        rgba(0,0,0,0.68) 75%,
-        rgba(0,0,0,0.82) 100%
+        rgba(0,0,0,0.00)  0%,
+        rgba(0,0,0,0.08) 35%,
+        rgba(0,0,0,0.62) 68%,
+        rgba(0,0,0,0.80) 100%
       );
     }
 
@@ -144,66 +78,67 @@
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 0 1.5rem 4.5rem;
+      padding: 0 1.5rem 5rem;
       width: 100%;
-      max-width: 960px;
+      max-width: 900px;
       display: flex;
       flex-direction: column;
       align-items: center;
+      gap: 0;
     }
 
-    /* "Sprzedaż rusza · 10 maja" — drobny kicker */
-    .hero__kicker {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.7rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.55);
-      margin-bottom: 1.1rem;
-    }
-
-    /* Headline — styl jak "Elegancja. Estetyka. Funkcjonalność. MyDeer." */
+    /* Główny napis — styl "Elegancja. Estetyka. Funkcjonalność. MyDeer." */
     .hero__headline {
       font-family: 'Barlow', sans-serif;
       font-weight: 300;
-      font-size: clamp(2.6rem, 5.8vw, 5.2rem);
-      line-height: 1.13;
+      font-size: clamp(2.8rem, 6vw, 5.4rem);
+      line-height: 1.12;
       color: var(--white);
-      letter-spacing: -0.015em;
-      margin-bottom: 2.8rem;
+      letter-spacing: -0.02em;
+      margin-bottom: 1.8rem;
     }
 
-    /* ─── SIGNUP FORM ─────────────────────────────── */
-    .signup-block {
-      width: 100%;
-      max-width: 560px;
-    }
-
-    .signup-offer {
+    /* Data + info */
+    .hero__info {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
-      font-size: 0.75rem;
-      letter-spacing: 0.22em;
+      font-size: clamp(0.72rem, 1.4vw, 0.82rem);
+      letter-spacing: 0.26em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.52);
-      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 0.75rem;
     }
 
-    .signup-offer strong {
-      color: rgba(255,255,255,0.90);
+    /* Oferta gratis */
+    .hero__offer {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: clamp(0.78rem, 1.5vw, 0.9rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.80);
+      margin-bottom: 2rem;
     }
 
-    .signup-row {
+    .hero__offer strong {
+      color: var(--white);
+    }
+
+    /* ─── FORMULARZ ─── */
+    .form-wrap {
+      width: 100%;
+      max-width: 520px;
+    }
+
+    .form-row {
       display: flex;
     }
 
-    .signup-input {
+    .form-input {
       flex: 1;
       padding: 1rem 1.4rem;
       font-family: 'Barlow', sans-serif;
       font-size: 0.9rem;
-      font-weight: 400;
       color: var(--white);
       background: rgba(255,255,255,0.10);
       border: 1px solid rgba(255,255,255,0.35);
@@ -211,17 +146,17 @@
       outline: none;
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      transition: border-color 0.25s, background 0.25s;
+      transition: border-color 0.22s, background 0.22s;
+      min-width: 0;
     }
 
-    .signup-input::placeholder { color: rgba(255,255,255,0.38); }
-
-    .signup-input:focus {
-      border-color: rgba(255,255,255,0.75);
-      background: rgba(255,255,255,0.15);
+    .form-input::placeholder { color: rgba(255,255,255,0.38); }
+    .form-input:focus {
+      border-color: rgba(255,255,255,0.72);
+      background: rgba(255,255,255,0.16);
     }
 
-    .signup-btn {
+    .form-btn {
       padding: 1rem 1.8rem;
       background: var(--white);
       color: var(--black);
@@ -233,201 +168,165 @@
       border: none;
       cursor: pointer;
       white-space: nowrap;
+      flex-shrink: 0;
       transition: background 0.22s, color 0.22s;
     }
 
-    .signup-btn:hover:not(:disabled) {
+    .form-btn:hover:not(:disabled) {
       background: var(--orange);
       color: var(--white);
     }
 
-    .signup-btn:disabled { opacity: 0.6; cursor: default; }
+    .form-btn:disabled { opacity: 0.55; cursor: default; }
 
-    .signup-success {
+    .form-success {
       display: none;
+      margin-top: 1.1rem;
       font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.85rem;
+      font-size: 0.82rem;
       letter-spacing: 0.22em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.75);
-      padding: 1.1rem 0;
+      color: rgba(255,255,255,0.70);
     }
 
-    /* ─── CONTACT STRIP ──────────────────────────── */
-    .contact-strip {
+    /* ─── CONTACT ─── */
+    .contact {
       background: var(--gray);
       border-top: 1px solid var(--border);
       display: flex;
       justify-content: center;
-      align-items: flex-start;
-      gap: 0;
       flex-wrap: wrap;
     }
 
-    .contact-cell {
-      padding: 2.8rem 3.5rem;
-      border-right: 1px solid var(--border);
-      min-width: 200px;
+    .contact__cell {
+      padding: 3rem 3.5rem;
       text-align: center;
+      border-right: 1px solid var(--border);
     }
 
-    .contact-cell:last-child { border-right: none; }
+    .contact__cell:last-child { border-right: none; }
 
-    .contact-cell__label {
+    .contact__label {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       letter-spacing: 0.28em;
       text-transform: uppercase;
       color: var(--orange);
-      margin-bottom: 0.65rem;
+      margin-bottom: 0.7rem;
     }
 
-    .contact-cell__value {
+    .contact__value {
       font-size: 0.92rem;
       font-weight: 400;
-      line-height: 1.75;
+      line-height: 1.8;
       color: var(--black);
     }
 
-    .contact-cell__value a {
+    .contact__value a {
       color: inherit;
       text-decoration: none;
       transition: color 0.2s;
     }
 
-    .contact-cell__value a:hover { color: var(--orange); }
+    .contact__value a:hover { color: var(--orange); }
 
-    .contact-cell__sub {
-      font-size: 0.78rem;
-      color: #888;
-      margin-top: 0.3rem;
+    .contact__note {
+      display: block;
+      font-size: 0.76rem;
+      color: #999;
       font-style: italic;
+      margin-top: 0.25rem;
     }
 
-    /* ─── FOOTER ─────────────────────────────────── */
+    /* ─── FOOTER ─── */
     footer {
       background: var(--black);
-      padding: 2.2rem 2rem;
+      padding: 2.4rem 2rem 2rem;
       display: flex;
       flex-direction: column;
       align-items: center;
       gap: 1.2rem;
     }
 
-    .footer-logo img {
-      height: 44px;
+    .footer__logo img {
+      height: 42px;
       width: auto;
       filter: brightness(0) invert(1);
-      opacity: 0.65;
+      opacity: 0.6;
     }
 
-    .footer-social {
+    .footer__social {
       display: flex;
-      gap: 0.8rem;
+      align-items: center;
+      gap: 0.6rem;
     }
 
-    .footer-social a {
+    .footer__social a {
       display: flex;
       align-items: center;
       justify-content: center;
       width: 38px;
       height: 38px;
-      border: 1px solid rgba(255,255,255,0.15);
-      color: rgba(255,255,255,0.45);
+      border: 1px solid rgba(255,255,255,0.14);
+      color: rgba(255,255,255,0.42);
       text-decoration: none;
-      transition: border-color 0.25s, color 0.25s;
+      transition: border-color 0.22s, color 0.22s;
     }
 
-    .footer-social a:hover {
-      border-color: rgba(255,255,255,0.55);
-      color: rgba(255,255,255,0.9);
+    .footer__social a:hover {
+      border-color: rgba(255,255,255,0.5);
+      color: rgba(255,255,255,0.88);
     }
 
-    .footer-copy {
-      font-size: 0.68rem;
-      letter-spacing: 0.07em;
-      color: rgba(255,255,255,0.22);
+    .footer__ig-handle {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.30);
+      text-decoration: none;
+      transition: color 0.22s;
     }
 
-    /* ─── RESPONSIVE ─────────────────────────────── */
-    @media (max-width: 900px) {
-      header { padding: 0 1.2rem; }
-      .nav   { display: none; }
+    .footer__ig-handle:hover { color: rgba(255,255,255,0.65); }
+
+    .footer__copy {
+      font-size: 0.65rem;
+      letter-spacing: 0.06em;
+      color: rgba(255,255,255,0.18);
     }
 
+    /* ─── RESPONSIVE ─── */
     @media (max-width: 640px) {
       .hero__content { padding-bottom: 3.5rem; }
 
-      .signup-row {
-        flex-direction: column;
-      }
-      .signup-input {
+      .form-row { flex-direction: column; }
+      .form-input {
         border-right: 1px solid rgba(255,255,255,0.35);
         border-bottom: none;
       }
 
-      .contact-cell {
-        padding: 2rem 2rem;
+      .contact__cell {
+        padding: 2.2rem 2rem;
         border-right: none;
         border-bottom: 1px solid var(--border);
         width: 100%;
       }
-      .contact-cell:last-child { border-bottom: none; }
+      .contact__cell:last-child { border-bottom: none; }
+    }
 
-      .topbar { font-size: 0.65rem; }
+    @media (max-width: 480px) {
+      header img { height: 38px; }
     }
   </style>
 </head>
 <body>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  -10% na zestawy startowe z kodem: <strong>START10</strong>
-  <span>·</span>
-  Born for fire
-  <span>·</span>
-  Darmowa dostawa
-  <span>·</span>
-  Bezproblemowe zwroty
-</div>
-
-<!-- HEADER -->
+<!-- HEADER — samo logo -->
 <header>
-  <ul class="nav">
-    <li><a href="#">Paleniska</a></li>
-    <li><a href="#">Paliwa i drewno</a></li>
-    <li><a href="#">Rozpałki</a></li>
-    <li><a href="#">Akcesoria</a></li>
-    <li><a href="#">Dealerzy</a></li>
-  </ul>
-
-  <div class="logo">
-    <img src="logo.svg" alt="MY DEER — Born for Fire" />
-  </div>
-
-  <div class="header-icons">
-    <button aria-label="Szukaj">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
-      </svg>
-    </button>
-    <button aria-label="Lista życzeń">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
-      </svg>
-    </button>
-    <button aria-label="Konto">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
-      </svg>
-    </button>
-    <button aria-label="Koszyk">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
-      </svg>
-    </button>
-  </div>
+  <img src="logo.svg" alt="MY DEER — Born for Fire" />
 </header>
 
 <!-- HERO -->
@@ -436,54 +335,57 @@
   <div class="hero__overlay"></div>
 
   <div class="hero__content">
-    <p class="hero__kicker">Sprzedaż rusza · 10 maja 2026</p>
 
     <h1 class="hero__headline">
       Elegancja. Estetyka.<br>Funkcjonalność. MyDeer.
     </h1>
 
-    <div class="signup-block">
-      <p class="signup-offer">
-        <strong>Zapisz się i odbierz gratis:</strong> 20 worków brykietu grillowego 2kg + podpałka
-      </p>
-      <form class="signup-row" id="signup-form" onsubmit="handleSignup(event)">
+    <p class="hero__info">Sprzedaż rusza wkrótce &nbsp;·&nbsp; Zajrzyj tu po 10.05</p>
+
+    <p class="hero__offer">
+      <strong>Zapisz się</strong> &mdash; odbierz 20 worków brykietu grillowego 2&nbsp;kg + podpałkę gratis
+    </p>
+
+    <div class="form-wrap">
+      <form class="form-row" id="signup-form" onsubmit="handleSignup(event)">
         <input
-          class="signup-input"
+          class="form-input"
           type="email"
           name="email"
           placeholder="Twój adres e-mail"
           required
           autocomplete="email"
         />
-        <button class="signup-btn" type="submit">Zapisz się</button>
+        <button class="form-btn" type="submit">Zapisz się</button>
       </form>
-      <p class="signup-success" id="signup-success">
+      <p class="form-success" id="form-success">
         ✓ &nbsp; Jesteś na liście. Do zobaczenia po 10 maja!
       </p>
     </div>
+
   </div>
 </section>
 
-<!-- CONTACT STRIP -->
-<div class="contact-strip">
-  <div class="contact-cell">
-    <p class="contact-cell__label">Showroom</p>
-    <p class="contact-cell__value">
+<!-- KONTAKT -->
+<div class="contact">
+  <div class="contact__cell">
+    <p class="contact__label">Showroom</p>
+    <p class="contact__value">
       My Deer ONE<br>
       ul. Kruszewska 28<br>
       16-070 Choroszcz
-      <span class="contact-cell__sub">Odwiedziny po wcześniejszym umówieniu</span>
+      <span class="contact__note">Odwiedziny po wcześniejszym umówieniu</span>
     </p>
   </div>
-  <div class="contact-cell">
-    <p class="contact-cell__label">Telefon</p>
-    <p class="contact-cell__value">
+  <div class="contact__cell">
+    <p class="contact__label">Telefon</p>
+    <p class="contact__value">
       <a href="tel:+48858730940">+48 85 873 09 40</a>
     </p>
   </div>
-  <div class="contact-cell">
-    <p class="contact-cell__label">E-mail</p>
-    <p class="contact-cell__value">
+  <div class="contact__cell">
+    <p class="contact__label">E-mail</p>
+    <p class="contact__value">
       <a href="mailto:info@mydeer.com.pl">info@mydeer.com.pl</a>
     </p>
   </div>
@@ -491,12 +393,11 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-logo">
+  <div class="footer__logo">
     <img src="logo.svg" alt="MyDeer Born for Fire" />
   </div>
 
-  <div class="footer-social">
-    <!-- Instagram -->
+  <div class="footer__social">
     <a href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener" aria-label="Instagram @mydeer.fire">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
@@ -504,22 +405,19 @@
         <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
       </svg>
     </a>
-    <!-- Facebook -->
-    <a href="https://www.facebook.com/mydeer.fire/" target="_blank" rel="noopener" aria-label="Facebook MyDeer">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-      </svg>
+    <a class="footer__ig-handle" href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener">
+      @mydeer.fire
     </a>
   </div>
 
-  <p class="footer-copy">&copy; 2026 MyDeer. Wszelkie prawa zastrzeżone.</p>
+  <p class="footer__copy">&copy; 2026 MyDeer. Wszelkie prawa zastrzeżone.</p>
 </footer>
 
 <script>
 async function handleSignup(e) {
   e.preventDefault();
   const form    = document.getElementById('signup-form');
-  const success = document.getElementById('signup-success');
+  const success = document.getElementById('form-success');
   const btn     = form.querySelector('button');
   const email   = form.querySelector('input[type=email]').value.trim();
 
