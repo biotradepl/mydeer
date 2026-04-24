@@ -356,7 +356,7 @@
     </p>
 
     <div class="form-wrap">
-      <form class="form-row" id="signup-form" onsubmit="handleSignup(event)">
+      <form class="form-row" action="https://formspree.io/f/mgordkqz" method="POST">
         <input
           class="form-input"
           type="email"
@@ -365,11 +365,9 @@
           required
           autocomplete="email"
         />
+        <input type="hidden" name="_next" value="https://mydeer.com.pl?ok=1" />
         <button class="form-btn" type="submit">Zapisz się</button>
       </form>
-      <p class="form-success" id="form-success">
-        ✓ &nbsp; Jesteś na liście. Do zobaczenia po 10 maja!
-      </p>
     </div>
 
   </div>
@@ -427,46 +425,11 @@
   </div>
 
   <a class="footer__ig-link" href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener">
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-      <circle cx="12" cy="12" r="4"/>
-      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-    </svg>
     @mydeer.fire
   </a>
 
   <p class="footer__copy">&copy; 2026 MyDeer. Wszelkie prawa zastrzeżone.</p>
 </footer>
 
-<script>
-async function handleSignup(e) {
-  e.preventDefault();
-  const form    = document.getElementById('signup-form');
-  const success = document.getElementById('form-success');
-  const btn     = form.querySelector('button');
-  const email   = form.querySelector('input[type=email]').value.trim();
-
-  btn.disabled    = true;
-  btn.textContent = '...';
-
-  try {
-    const res = await fetch('https://formspree.io/f/mgordkqz', {
-      method:  'POST',
-      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
-      body:    JSON.stringify({ email })
-    });
-    if (res.ok) {
-      form.style.display    = 'none';
-      success.style.display = 'block';
-    } else {
-      btn.disabled    = false;
-      btn.textContent = 'Zapisz się';
-    }
-  } catch (_) {
-    btn.disabled    = false;
-    btn.textContent = 'Zapisz się';
-  }
-}
-</script>
 </body>
 </html>
