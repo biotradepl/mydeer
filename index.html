@@ -865,7 +865,7 @@
 
   <div class="hero__content">
 
-    <span class="pre-badge">Oficjalny sklep — Start w marcu</span>
+    <span class="pre-badge">Oficjalny sklep — Start 10 maja</span>
 
     <div class="logo-wrap">
       <img
@@ -876,7 +876,7 @@
     </div>
 
     <h1 class="hero__headline">
-      <em>Ewolucja ognia.</em><br>Już wkrótce.
+      <em>Sprzedaż rusza wkrótce.</em><br>Zajrzyj tu po 10.05.
     </h1>
 
     <p class="hero__sub">
@@ -886,22 +886,23 @@
 
     <div class="signup-wrap">
       <div class="reward-badge">
-        <span class="reward-badge__icon">🪵</span>
+        <span class="reward-badge__icon">🔥</span>
         <div class="reward-badge__text">
-          <span class="reward-badge__headline">Zapas drewna gratis — tylko dla pierwszych 30 klientów</span>
-          <span class="reward-badge__sub">Zostaw e-mail. W dniu otwarcia wyślemy kod na bezpłatny zapas drewna do pierwszego paleniska.</span>
+          <span class="reward-badge__headline">Zapisz się — 20 worków brykietu 2kg + podpałka gratis</span>
+          <span class="reward-badge__sub">Zostaw e-mail i odbierz swój prezent przy pierwszym zamówieniu. Oferta dla zapisanych przed otwarciem sklepu.</span>
         </div>
       </div>
       <form class="signup" id="signup-form" onsubmit="handleSignup(event)">
         <input
           class="signup__input"
           type="email"
+          name="email"
           placeholder="Twój adres e-mail"
           required
         />
-        <button class="signup__btn" type="submit">Chcę kod zniżkowy</button>
+        <button class="signup__btn" type="submit">Zapisz się</button>
       </form>
-      <p class="signup__success" id="signup-success">✦ &nbsp; Jesteś na liście. Do zobaczenia w marcu!</p>
+      <p class="signup__success" id="signup-success">✦ &nbsp; Jesteś na liście. Do zobaczenia po 10 maja!</p>
     </div>
 
   </div>
@@ -973,14 +974,14 @@
     <div class="marquee-strip__item">System ONE <span>✦</span></div>
     <div class="marquee-strip__item">Born for Fire <span>✦</span></div>
     <div class="marquee-strip__item">Polska marka <span>✦</span></div>
-    <div class="marquee-strip__item">Start w marcu <span>✦</span></div>
+    <div class="marquee-strip__item">Start 10 maja <span>✦</span></div>
     <div class="marquee-strip__item">Pełna mobilność <span>✦</span></div>
     <div class="marquee-strip__item">Płyta Inox <span>✦</span></div>
     <div class="marquee-strip__item">Stal Corten <span>✦</span></div>
     <div class="marquee-strip__item">System ONE <span>✦</span></div>
     <div class="marquee-strip__item">Born for Fire <span>✦</span></div>
     <div class="marquee-strip__item">Polska marka <span>✦</span></div>
-    <div class="marquee-strip__item">Start w marcu <span>✦</span></div>
+    <div class="marquee-strip__item">Start 10 maja <span>✦</span></div>
     <div class="marquee-strip__item">Pełna mobilność <span>✦</span></div>
   </div>
 </div>
@@ -1080,7 +1081,7 @@
 
     <div class="reveal">
       <p class="contact__label">Showroom</p>
-      <p class="contact__name">MyDeer<br>Born for Fire</p>
+      <p class="contact__name">My Deer ONE<br>Choroszcz</p>
       <p class="contact__address">
         ul. Kruszewska 28<br>
         16-070 Choroszcz
@@ -1240,21 +1241,35 @@
 })();
 
 /* =============================================
-   SIGNUP
+   SIGNUP — formspree
 ============================================= */
-function handleSignup(e) {
+async function handleSignup(e) {
   e.preventDefault();
-  const email   = e.target.querySelector('input[type=email]').value.trim();
   const form    = document.getElementById('signup-form');
   const success = document.getElementById('signup-success');
+  const btn     = form.querySelector('button');
+  const email   = form.querySelector('input[type=email]').value.trim();
 
-  window.location.href =
-    'mailto:info@mydeer.com.pl'
-    + '?subject=' + encodeURIComponent('Chcę kod zniżkowy — MyDeer')
-    + '&body='    + encodeURIComponent('Proszę o kod zniżkowy na zapas drewna do pierwszego paleniska.\n\nMój adres e-mail: ' + email);
+  btn.disabled    = true;
+  btn.textContent = '...';
 
-  form.style.display    = 'none';
-  success.style.display = 'block';
+  try {
+    const res = await fetch('https://formspree.io/f/mgordkqz', {
+      method:  'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body:    JSON.stringify({ email })
+    });
+    if (res.ok) {
+      form.style.display    = 'none';
+      success.style.display = 'block';
+    } else {
+      btn.disabled    = false;
+      btn.textContent = 'Zapisz się';
+    }
+  } catch (_) {
+    btn.disabled    = false;
+    btn.textContent = 'Zapisz się';
+  }
 }
 </script>
 </body>
