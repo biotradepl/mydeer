@@ -3,1246 +3,521 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MyDeer — Born for Fire | Oficjalny Sklep</title>
-  <meta name="description" content="Mobilne paleniska i planche z nierdzewnej stali. MyDeer — Born for Fire. Oficjalny sklep startuje w marcu." />
+  <title>MyDeer — Born for Fire | Sklep Oficjalny</title>
+  <meta name="description" content="Mobilne paleniska i planche. Sprzedaż rusza 10 maja. Zapisz się i odbierz 20 worków brykietu gratis." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <!--
-    Alfa Slab One  → H1/hero headline (slab serif zbliżony do Chuck Noon z brandbooka)
-    Barlow Condensed → nagłówki sekcji, UI labels
-    Barlow          → body copy
-  -->
-  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800;900&display=swap" rel="stylesheet" />
 
   <style>
-    /* =============================================
-       RESET & TOKENS
-    ============================================= */
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --black:  #050A0A;
-      --orange: #D66434;
-      --creme:  #F4EED9;
-      --white:  #FFFFFF;
-      --border: rgba(244, 238, 217, 0.10);
-    }
-
     html { scroll-behavior: smooth; }
 
+    :root {
+      --orange: #C8541D;
+      --black:  #111111;
+      --white:  #FFFFFF;
+      --gray:   #F3F3F1;
+      --border: #E2E2DE;
+    }
+
     body {
-      background: var(--black);
-      color: var(--creme);
+      background: var(--white);
+      color: var(--black);
       font-family: 'Barlow', sans-serif;
       overflow-x: hidden;
     }
 
-    /* =============================================
-       FIRE PARTICLE CANVAS
-    ============================================= */
-    #fire-canvas {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 1;
+    /* ─── TOPBAR ─────────────────────────────────── */
+    .topbar {
+      background: var(--black);
+      color: rgba(255,255,255,0.70);
+      font-size: 0.72rem;
+      letter-spacing: 0.07em;
+      text-align: center;
+      padding: 0.55rem 1rem;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+    .topbar strong { color: #fff; font-weight: 700; }
+    .topbar span   { margin: 0 1.4rem; opacity: 0.35; }
+
+    /* ─── HEADER ─────────────────────────────────── */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      align-items: center;
+      padding: 0 2.4rem;
+      height: 68px;
     }
 
-    /* =============================================
-       HERO
-    ============================================= */
-    .hero {
-      position: relative;
-      min-height: 100vh;
+    .nav {
       display: flex;
       align-items: center;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .nav a {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--black);
+      transition: color 0.2s;
+    }
+
+    .nav a:hover { color: var(--orange); }
+
+    .logo {
+      display: flex;
       justify-content: center;
-      overflow: hidden;
+      align-items: center;
+    }
+
+    /* Logo PNG — ciemna wersja dla białego tła */
+    .logo img {
+      height: 50px;
+      width: auto;
+      display: block;
+      filter: brightness(0) saturate(1);
+    }
+
+    .header-icons {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 1.3rem;
+    }
+
+    .header-icons a,
+    .header-icons button {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--black);
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .header-icons a:hover,
+    .header-icons button:hover { color: var(--orange); }
+
+    /* ─── HERO ───────────────────────────────────── */
+    .hero {
+      position: relative;
+      height: calc(100vh - 68px - 32px);
+      min-height: 560px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
     }
 
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image: url('5ea9b011-02ec-4189-8273-0f3274aa08d3.png');
+      background-image: url('pobrane');
       background-size: cover;
-      background-position: center center;
-      will-change: transform;
+      background-position: center 28%;
     }
 
     .hero__overlay {
       position: absolute;
       inset: 0;
-      background:
-        linear-gradient(to bottom,
-          rgba(5,10,10,0.60) 0%,
-          rgba(5,10,10,0.30) 40%,
-          rgba(5,10,10,0.85) 100%),
-        linear-gradient(to right,
-          rgba(5,10,10,0.20) 0%,
-          transparent 50%,
-          rgba(5,10,10,0.20) 100%);
-    }
-
-    .hero__glow {
-      position: absolute;
-      bottom: -60px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 900px;
-      height: 400px;
-      background: radial-gradient(ellipse at center, rgba(214,100,52,0.14) 0%, transparent 68%);
-      pointer-events: none;
+      background: linear-gradient(
+        180deg,
+        rgba(0,0,0,0.00) 0%,
+        rgba(0,0,0,0.10) 40%,
+        rgba(0,0,0,0.68) 75%,
+        rgba(0,0,0,0.82) 100%
+      );
     }
 
     .hero__content {
       position: relative;
       z-index: 2;
       text-align: center;
-      padding: 4rem 1.5rem 10rem;
-      max-width: 860px;
+      padding: 0 1.5rem 4.5rem;
       width: 100%;
-    }
-
-    /* pre-badge */
-    .pre-badge {
-      display: inline-block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 0.7rem;
-      letter-spacing: 0.28em;
-      text-transform: uppercase;
-      color: var(--orange);
-      border: 1px solid rgba(214,100,52,0.35);
-      padding: 0.4rem 1rem;
-      margin-bottom: 2rem;
-      opacity: 0;
-      transform: translateY(12px);
-      animation: fadeUp 0.8s cubic-bezier(.16,1,.3,1) 0.1s forwards;
-    }
-
-    /* logo badge */
-    .logo-wrap {
-      margin-bottom: 1.8rem;
-      opacity: 0;
-      transform: translateY(18px);
-      animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.25s forwards;
-    }
-
-    .logo-img {
-      height: clamp(120px, 22vw, 200px);
-      width: auto;
-      display: block;
-      margin: 0 auto;
-      /* badge ma własne kolory — lekki drop-shadow żeby odskoczył od tła */
-      filter: drop-shadow(0 4px 24px rgba(214,100,52,0.30)) drop-shadow(0 2px 8px rgba(5,10,10,0.60));
-    }
-
-    /* H1 — Alfa Slab One, zbliżony do Chuck Noon z brandbooka */
-    .hero__headline {
-      font-family: 'Alfa Slab One', serif;
-      font-weight: 400; /* Alfa Slab One ma tylko jeden weight */
-      font-size: clamp(2.4rem, 7vw, 5.2rem);
-      line-height: 1.08;
-      color: var(--white);
-      text-transform: uppercase;
-      letter-spacing: 0.03em;
-      margin-bottom: 1.4rem;
-      opacity: 0;
-      transform: translateY(20px);
-      animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.5s forwards;
-    }
-
-    .hero__headline em {
-      font-style: normal;
-      color: var(--orange);
-      position: relative;
-      display: inline-block;
-    }
-
-    .hero__headline em::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 3px;
-      width: 100%;
-      height: 3px;
-      background: var(--orange);
-      transform-origin: left;
-      animation: flicker 3.5s ease-in-out 2.5s infinite;
-    }
-
-    .hero__sub {
-      font-size: clamp(0.95rem, 1.8vw, 1.12rem);
-      font-weight: 300;
-      color: rgba(244,238,217,0.68);
-      max-width: 540px;
-      margin: 0 auto 3rem;
-      line-height: 1.82;
-      opacity: 0;
-      transform: translateY(14px);
-      animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.7s forwards;
-    }
-
-    /* =============================================
-       SIGNUP FORM
-    ============================================= */
-    .signup-wrap {
-      max-width: 520px;
-      margin: 0 auto;
-      position: relative;
-      z-index: 10;
-      opacity: 0;
-      transform: translateY(14px);
-      animation: fadeUp 1s cubic-bezier(.16,1,.3,1) 0.88s forwards;
-    }
-
-    /* reward badge nad formularzem */
-    .reward-badge {
-      display: flex;
-      align-items: flex-start;
-      gap: 1.1rem;
-      background: rgba(214,100,52,0.10);
-      border: 1px solid rgba(214,100,52,0.45);
-      border-left: 3px solid var(--orange);
-      padding: 1.1rem 1.4rem;
-      margin-bottom: 1.4rem;
-      text-align: left;
-    }
-
-    .reward-badge__icon {
-      font-size: 1.8rem;
-      line-height: 1;
-      flex-shrink: 0;
-      margin-top: 0.1rem;
-    }
-
-    .reward-badge__text {
-      line-height: 1.5;
-    }
-
-    .reward-badge__headline {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: 1.05rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--orange);
-      display: block;
-      margin-bottom: 0.35rem;
-    }
-
-    .reward-badge__sub {
-      font-size: 0.82rem;
-      font-weight: 300;
-      color: rgba(244,238,217,0.65);
-      line-height: 1.65;
-    }
-
-    .signup-wrap__hint {
-      font-size: 0.78rem;
-      font-weight: 300;
-      color: rgba(244,238,217,0.38);
-      margin-bottom: 0.7rem;
-      line-height: 1.6;
-    }
-
-    .signup {
-      display: flex;
-    }
-
-    .signup__input {
-      flex: 1;
-      padding: 1rem 1.4rem;
-      background: rgba(244,238,217,0.07);
-      border: 1px solid var(--border);
-      border-right: none;
-      color: var(--creme);
-      font-family: 'Barlow', sans-serif;
-      font-size: 0.9rem;
-      outline: none;
-      transition: border-color 0.3s, background 0.3s;
-      backdrop-filter: blur(12px);
-    }
-
-    .signup__input::placeholder { color: rgba(244,238,217,0.30); }
-    .signup__input:focus {
-      border-color: rgba(214,100,52,0.65);
-      background: rgba(244,238,217,0.10);
-    }
-
-    .signup__btn {
-      padding: 1rem 1.6rem;
-      background: var(--orange);
-      color: var(--white);
-      border: none;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 700;
-      font-size: 0.78rem;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background 0.25s;
-      white-space: nowrap;
-    }
-
-    .signup__btn:hover { background: #bf5429; }
-
-    .signup__success {
-      display: none;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: var(--orange);
-      padding: 1.1rem 0;
-    }
-
-    /* scroll indicator */
-    .scroll-hint {
-      position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 1;
-      pointer-events: none;
+      max-width: 960px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.5rem;
-      opacity: 0;
-      animation: fadeIn 1s ease 2.4s forwards;
     }
 
-    .scroll-hint__text {
-      font-size: 0.6rem;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: rgba(244,238,217,0.28);
-    }
-
-    .scroll-hint__line {
-      width: 1px;
-      height: 44px;
-      background: linear-gradient(to bottom, var(--orange), transparent);
-      animation: scrollPulse 2s ease-in-out infinite;
-    }
-
-    /* =============================================
-       USP — 4 COLUMNS
-    ============================================= */
-    .usp {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-    }
-
-    .usp__item {
-      padding: 2.8rem clamp(1.2rem, 2.5vw, 2rem);
-      border-right: 1px solid var(--border);
-      transition: background 0.4s;
-    }
-
-    .usp__item:last-child { border-right: none; }
-    .usp__item:hover { background: rgba(214,100,52,0.04); }
-
-    .usp__icon {
-      width: 28px;
-      height: 2px;
-      background: var(--orange);
-      margin-bottom: 1.4rem;
-      transition: width 0.5s ease;
-    }
-
-    .usp__item.visible .usp__icon { width: 44px; }
-
-    .usp__title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(1rem, 1.8vw, 1.3rem);
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--creme);
-      margin-bottom: 0.9rem;
-      line-height: 1.15;
-    }
-
-    .usp__body {
-      font-size: clamp(0.82rem, 1.2vw, 0.9rem);
-      font-weight: 300;
-      line-height: 1.78;
-      color: rgba(244,238,217,0.55);
-    }
-
-    /* =============================================
-       ABOUT
-    ============================================= */
-    .about {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-    }
-
-    .about__inner {
-      max-width: 720px;
-      text-align: center;
-      padding: clamp(4rem, 7vw, 6.5rem) clamp(1.5rem, 5vw, 3rem);
-    }
-
-    .eyebrow {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
-      letter-spacing: 0.32em;
-      text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1.4rem;
-    }
-
-    .section-title {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 800;
-      font-size: clamp(1.8rem, 4.2vw, 3rem);
-      text-transform: uppercase;
-      line-height: 1.1;
-      color: var(--creme);
-      margin-bottom: 1.8rem;
-      letter-spacing: 0.02em;
-    }
-
-    .section-body {
-      font-size: clamp(0.95rem, 1.5vw, 1.05rem);
-      font-weight: 300;
-      line-height: 1.92;
-      color: rgba(244,238,217,0.60);
-    }
-
-    /* =============================================
-       MARQUEE
-    ============================================= */
-    .marquee-strip {
-      position: relative;
-      z-index: 2;
-      overflow: hidden;
-      border-top: 1px solid var(--border);
-      border-bottom: 1px solid var(--border);
-      padding: 1.5rem 0;
-      white-space: nowrap;
-    }
-
-    .marquee-strip__track {
-      display: inline-flex;
-      gap: 2.5rem;
-      animation: marquee 26s linear infinite;
-    }
-
-    .marquee-strip__item {
+    /* "Sprzedaż rusza · 10 maja" — drobny kicker */
+    .hero__kicker {
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
-      font-size: clamp(0.85rem, 1.6vw, 1.1rem);
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      color: rgba(244,238,217,0.14);
-      display: flex;
-      align-items: center;
-      gap: 1rem;
-    }
-
-    .marquee-strip__item span { color: var(--orange); opacity: 0.4; }
-
-    /* =============================================
-       PRODUCTS
-    ============================================= */
-    .products {
-      position: relative;
-      z-index: 2;
-      padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 3vw, 2.5rem) clamp(4rem, 8vw, 7rem);
-    }
-
-    .products__header {
-      text-align: center;
-      margin-bottom: clamp(2rem, 4vw, 3.5rem);
-    }
-
-    .products__grid {
-      display: grid;
-      grid-template-columns: repeat(12, 1fr);
-      grid-template-rows: 360px 300px;
-      gap: 1rem;
-      max-width: 1320px;
-      margin: 0 auto 2.5rem;
-    }
-
-    .pcard:nth-child(1) { grid-column: 1 / 8;  grid-row: 1; }
-    .pcard:nth-child(2) { grid-column: 8 / 13; grid-row: 1; }
-    .pcard:nth-child(3) { grid-column: 1 / 6;  grid-row: 2; }
-    .pcard:nth-child(4) { grid-column: 6 / 13; grid-row: 2; }
-
-    .pcard {
-      position: relative;
-      overflow: hidden;
-      min-height: 200px;
-    }
-
-    /* pcard i gallery__item są zawsze widoczne — nie ukrywamy obrazków przez reveal */
-    .pcard.reveal,
-    .gallery__item.reveal {
-      opacity: 1;
-      transform: none;
-      transition: none;
-    }
-
-    .pcard__img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-      transition: transform 0.85s cubic-bezier(.16,1,.3,1), filter 0.5s ease;
-      filter: brightness(0.83) saturate(0.92);
-    }
-
-    .pcard:hover .pcard__img {
-      transform: scale(1.06);
-      filter: brightness(1) saturate(1.1);
-    }
-
-    .pcard__caption {
-      position: absolute;
-      bottom: 0; left: 0; right: 0;
-      padding: 2.5rem 1.8rem 1.5rem;
-      background: linear-gradient(to top, rgba(5,10,10,0.88) 0%, transparent 100%);
-      transform: translateY(100%);
-      transition: transform 0.42s cubic-bezier(.16,1,.3,1);
-    }
-
-    .pcard:hover .pcard__caption { transform: translateY(0); }
-
-    .pcard__label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 0.72rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      color: var(--orange);
-    }
-
-    /* Instagram CTA */
-    .ig-cta {
-      text-align: center;
-    }
-
-    .ig-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.7rem;
-      padding: 0.9rem 2rem;
-      border: 1px solid var(--border);
-      color: rgba(244,238,217,0.65);
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: border-color 0.3s, color 0.3s, background 0.3s;
-    }
-
-    .ig-btn:hover {
-      border-color: var(--orange);
-      color: var(--creme);
-      background: rgba(214,100,52,0.06);
-    }
-
-    .ig-btn svg { flex-shrink: 0; }
-
-    /* =============================================
-       GALLERY
-    ============================================= */
-    .gallery {
-      position: relative;
-      z-index: 2;
-      padding: clamp(3rem, 6vw, 5rem) clamp(1rem, 3vw, 2.5rem);
-      border-top: 1px solid var(--border);
-    }
-
-    .gallery__header {
-      text-align: center;
-      margin-bottom: clamp(1.8rem, 3vw, 3rem);
-    }
-
-    .gallery__grid {
-      columns: 3;
-      column-gap: 0.75rem;
-      max-width: 1320px;
-      margin: 0 auto;
-    }
-
-    .gallery__item {
-      break-inside: avoid;
-      margin-bottom: 0.75rem;
-      overflow: hidden;
-      display: block;
-    }
-
-    .gallery__item img {
-      width: 100%;
-      height: auto;
-      display: block;
-      filter: brightness(0.88) saturate(0.90);
-      transition: transform 0.85s cubic-bezier(.16,1,.3,1), filter 0.5s ease;
-    }
-
-    .gallery__item:hover img {
-      transform: scale(1.04);
-      filter: brightness(1) saturate(1.1);
-    }
-
-    @media (max-width: 900px) {
-      .gallery__grid { columns: 2; }
-    }
-    @media (max-width: 560px) {
-      .gallery__grid { columns: 1; }
-    }
-
-    /* =============================================
-       CONTACT
-    ============================================= */
-    .contact {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      border-top: 1px solid var(--border);
-    }
-
-    .contact__inner {
-      max-width: 960px;
-      width: 100%;
-      padding: clamp(3.5rem, 7vw, 6rem) clamp(1.5rem, 5vw, 3rem);
-      display: grid;
-      grid-template-columns: 1fr 1px 1fr;
-      gap: 0 clamp(2rem, 6vw, 5rem);
-      align-items: start;
-    }
-
-    .contact__divider {
-      background: var(--border);
-      height: 100%;
-      min-height: 160px;
-    }
-
-    .contact__label {
-      font-family: 'Barlow Condensed', sans-serif;
-      font-size: 0.72rem;
-      font-weight: 400;
+      font-size: 0.7rem;
       letter-spacing: 0.32em;
       text-transform: uppercase;
-      color: var(--orange);
-      margin-bottom: 1.4rem;
+      color: rgba(255,255,255,0.55);
+      margin-bottom: 1.1rem;
     }
 
-    .contact__name {
+    /* Headline — styl jak "Elegancja. Estetyka. Funkcjonalność. MyDeer." */
+    .hero__headline {
+      font-family: 'Barlow', sans-serif;
+      font-weight: 300;
+      font-size: clamp(2.6rem, 5.8vw, 5.2rem);
+      line-height: 1.13;
+      color: var(--white);
+      letter-spacing: -0.015em;
+      margin-bottom: 2.8rem;
+    }
+
+    /* ─── SIGNUP FORM ─────────────────────────────── */
+    .signup-block {
+      width: 100%;
+      max-width: 560px;
+    }
+
+    .signup-offer {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.52);
+      margin-bottom: 1rem;
+    }
+
+    .signup-offer strong {
+      color: rgba(255,255,255,0.90);
+    }
+
+    .signup-row {
+      display: flex;
+    }
+
+    .signup-input {
+      flex: 1;
+      padding: 1rem 1.4rem;
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 400;
+      color: var(--white);
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.35);
+      border-right: none;
+      outline: none;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: border-color 0.25s, background 0.25s;
+    }
+
+    .signup-input::placeholder { color: rgba(255,255,255,0.38); }
+
+    .signup-input:focus {
+      border-color: rgba(255,255,255,0.75);
+      background: rgba(255,255,255,0.15);
+    }
+
+    .signup-btn {
+      padding: 1rem 1.8rem;
+      background: var(--white);
+      color: var(--black);
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 800;
-      font-size: clamp(1.3rem, 2.8vw, 1.8rem);
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--creme);
-      margin-bottom: 0.6rem;
-      line-height: 1.15;
+      border: none;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.22s, color 0.22s;
     }
 
-    .contact__address {
-      font-size: 0.92rem;
-      font-weight: 300;
-      line-height: 1.9;
-      color: rgba(244,238,217,0.50);
-    }
-
-    .contact__address em {
-      font-style: italic;
-      font-size: 0.82rem;
-      color: rgba(244,238,217,0.35);
-      display: block;
-      margin-top: 0.4rem;
-    }
-
-    .contact__link {
-      display: inline-block;
-      font-family: 'Barlow Condensed', sans-serif;
-      font-weight: 600;
-      font-size: clamp(1rem, 2.2vw, 1.4rem);
-      letter-spacing: 0.04em;
-      color: var(--creme);
-      text-decoration: none;
-      position: relative;
-      transition: color 0.25s;
-      line-height: 1.6;
-    }
-
-    .contact__link::after {
-      content: '';
-      position: absolute;
-      left: 0; bottom: -2px;
-      width: 0; height: 1px;
+    .signup-btn:hover:not(:disabled) {
       background: var(--orange);
-      transition: width 0.35s ease;
+      color: var(--white);
     }
 
-    .contact__link:hover { color: var(--orange); }
-    .contact__link:hover::after { width: 100%; }
+    .signup-btn:disabled { opacity: 0.6; cursor: default; }
 
-    .contact__phone {
-      display: block;
-      font-size: 0.95rem;
-      font-weight: 300;
-      color: rgba(244,238,217,0.50);
-      text-decoration: none;
-      margin-top: 0.4rem;
-      transition: color 0.25s;
+    .signup-success {
+      display: none;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      padding: 1.1rem 0;
     }
 
-    .contact__phone:hover { color: var(--creme); }
-
-    /* Social icons */
-    .social-links {
+    /* ─── CONTACT STRIP ──────────────────────────── */
+    .contact-strip {
+      background: var(--gray);
+      border-top: 1px solid var(--border);
       display: flex;
-      gap: 1rem;
-      margin-top: 1.8rem;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0;
+      flex-wrap: wrap;
     }
 
-    .social-link {
+    .contact-cell {
+      padding: 2.8rem 3.5rem;
+      border-right: 1px solid var(--border);
+      min-width: 200px;
+      text-align: center;
+    }
+
+    .contact-cell:last-child { border-right: none; }
+
+    .contact-cell__label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--orange);
+      margin-bottom: 0.65rem;
+    }
+
+    .contact-cell__value {
+      font-size: 0.92rem;
+      font-weight: 400;
+      line-height: 1.75;
+      color: var(--black);
+    }
+
+    .contact-cell__value a {
+      color: inherit;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .contact-cell__value a:hover { color: var(--orange); }
+
+    .contact-cell__sub {
+      font-size: 0.78rem;
+      color: #888;
+      margin-top: 0.3rem;
+      font-style: italic;
+    }
+
+    /* ─── FOOTER ─────────────────────────────────── */
+    footer {
+      background: var(--black);
+      padding: 2.2rem 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1.2rem;
+    }
+
+    .footer-logo img {
+      height: 44px;
+      width: auto;
+      filter: brightness(0) invert(1);
+      opacity: 0.75;
+    }
+
+    .footer-social {
+      display: flex;
+      gap: 0.8rem;
+    }
+
+    .footer-social a {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: 40px;
-      height: 40px;
-      border: 1px solid var(--border);
-      color: rgba(244,238,217,0.45);
+      width: 38px;
+      height: 38px;
+      border: 1px solid rgba(255,255,255,0.15);
+      color: rgba(255,255,255,0.45);
       text-decoration: none;
-      transition: border-color 0.3s, color 0.3s, background 0.3s;
+      transition: border-color 0.25s, color 0.25s;
     }
 
-    .social-link:hover {
-      border-color: var(--orange);
-      color: var(--orange);
-      background: rgba(214,100,52,0.06);
+    .footer-social a:hover {
+      border-color: rgba(255,255,255,0.55);
+      color: rgba(255,255,255,0.9);
     }
 
-    /* =============================================
-       FOOTER
-    ============================================= */
-    footer {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      padding: clamp(2.5rem, 5vw, 4rem) 2rem clamp(2rem, 4vw, 3rem);
-      border-top: 1px solid var(--border);
+    .footer-copy {
+      font-size: 0.68rem;
+      letter-spacing: 0.07em;
+      color: rgba(255,255,255,0.22);
     }
 
-    .footer__logo {
-      height: 60px;
-      width: auto;
-      display: block;
-      margin: 0 auto 0.8rem;
-      filter: drop-shadow(0 2px 8px rgba(214,100,52,0.2));
-      opacity: 0.85;
+    /* ─── RESPONSIVE ─────────────────────────────── */
+    @media (max-width: 900px) {
+      header { padding: 0 1.2rem; }
+      .nav   { display: none; }
     }
 
-    .footer__copy {
-      font-size: 0.72rem;
-      color: rgba(244,238,217,0.20);
-      letter-spacing: 0.06em;
-    }
+    @media (max-width: 640px) {
+      .hero__content { padding-bottom: 3.5rem; }
 
-    /* =============================================
-       REVEAL
-    ============================================= */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.9s cubic-bezier(.16,1,.3,1),
-                  transform 0.9s cubic-bezier(.16,1,.3,1);
-    }
-
-    .reveal.visible { opacity: 1; transform: translateY(0); }
-
-    .d1 { transition-delay: 0.08s; }
-    .d2 { transition-delay: 0.17s; }
-    .d3 { transition-delay: 0.26s; }
-    .d4 { transition-delay: 0.35s; }
-
-    /* =============================================
-       KEYFRAMES
-    ============================================= */
-    @keyframes fadeUp {
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    @keyframes fadeIn {
-      to { opacity: 1; }
-    }
-
-    @keyframes scrollPulse {
-      0%, 100% { opacity: 0.75; transform: scaleY(1); }
-      50%       { opacity: 0.22; transform: scaleY(0.5); }
-    }
-
-    @keyframes flicker {
-      0%, 100% { opacity: 1;    transform: scaleX(1); }
-      20%       { opacity: 0.5;  transform: scaleX(0.93); }
-      40%       { opacity: 1;    transform: scaleX(1.02); }
-      60%       { opacity: 0.75; transform: scaleX(0.97); }
-    }
-
-    @keyframes marquee {
-      from { transform: translateX(0); }
-      to   { transform: translateX(-50%); }
-    }
-
-    /* =============================================
-       RESPONSIVE
-    ============================================= */
-    @media (max-width: 1000px) {
-      .usp {
-        grid-template-columns: repeat(2, 1fr);
+      .signup-row {
+        flex-direction: column;
       }
-      .usp__item:nth-child(2) { border-right: none; }
-      .usp__item:nth-child(3) { border-top: 1px solid var(--border); }
-      .usp__item:nth-child(4) { border-top: 1px solid var(--border); border-right: none; }
-
-      .products__grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
-      .pcard:nth-child(1) { grid-column: 1 / 3; grid-row: 1; }
-      .pcard:nth-child(2) { grid-column: 1 / 2; grid-row: 2; }
-      .pcard:nth-child(3) { grid-column: 2 / 3; grid-row: 2; }
-      .pcard:nth-child(4) { grid-column: 1 / 3; grid-row: 3; }
-      .pcard__img { min-height: 280px; }
-    }
-
-    @media (max-width: 700px) {
-      .usp { grid-template-columns: 1fr; }
-      .usp__item { border-right: none; border-bottom: 1px solid var(--border); }
-      .usp__item:last-child { border-bottom: none; }
-      .usp__item:nth-child(3),
-      .usp__item:nth-child(4) { border-top: none; }
-
-      .signup { flex-direction: column; }
-      .signup__input {
-        border-right: 1px solid var(--border);
+      .signup-input {
+        border-right: 1px solid rgba(255,255,255,0.35);
         border-bottom: none;
       }
 
-      .products__grid { grid-template-columns: 1fr; grid-template-rows: auto; }
-      .pcard:nth-child(n) { grid-column: 1; grid-row: auto; }
-      .pcard__img { min-height: 260px; }
-
-      .contact__inner {
-        grid-template-columns: 1fr;
-        gap: 3rem 0;
+      .contact-cell {
+        padding: 2rem 2rem;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+        width: 100%;
       }
-      .contact__divider { display: none; }
+      .contact-cell:last-child { border-bottom: none; }
+
+      .topbar { font-size: 0.65rem; }
     }
   </style>
 </head>
 <body>
 
-<canvas id="fire-canvas"></canvas>
+<!-- TOPBAR -->
+<div class="topbar">
+  -10% na zestawy startowe z kodem: <strong>START10</strong>
+  <span>·</span>
+  Born for fire
+  <span>·</span>
+  Darmowa dostawa
+  <span>·</span>
+  Bezproblemowe zwroty
+</div>
 
-<!-- =============================================
-     HERO
-============================================= -->
+<!-- HEADER -->
+<header>
+  <ul class="nav">
+    <li><a href="#">Paleniska</a></li>
+    <li><a href="#">Paliwa i drewno</a></li>
+    <li><a href="#">Rozpałki</a></li>
+    <li><a href="#">Akcesoria</a></li>
+    <li><a href="#">Dealerzy</a></li>
+  </ul>
+
+  <div class="logo">
+    <img src="MyDeer born for fire - classic.png" alt="MY DEER — Born for Fire" />
+  </div>
+
+  <div class="header-icons">
+    <button aria-label="Szukaj">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/>
+      </svg>
+    </button>
+    <button aria-label="Lista życzeń">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </button>
+    <button aria-label="Konto">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/>
+      </svg>
+    </button>
+    <button aria-label="Koszyk">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/>
+      </svg>
+    </button>
+  </div>
+</header>
+
+<!-- HERO -->
 <section class="hero">
-  <div class="hero__bg" id="hero-bg"></div>
+  <div class="hero__bg"></div>
   <div class="hero__overlay"></div>
-  <div class="hero__glow"></div>
 
   <div class="hero__content">
-
-    <span class="pre-badge">Oficjalny sklep — Start 10 maja</span>
-
-    <div class="logo-wrap">
-      <img
-        class="logo-img"
-        src="MyDeer born for fire - classic.png"
-        alt="MyDeer Born for Fire"
-      />
-    </div>
+    <p class="hero__kicker">Sprzedaż rusza · 10 maja 2026</p>
 
     <h1 class="hero__headline">
-      <em>Sprzedaż rusza wkrótce.</em><br>Zajrzyj tu po 10.05.
+      Elegancja. Estetyka.<br>Funkcjonalność. MyDeer.
     </h1>
 
-    <p class="hero__sub">
-      Mobilne paleniska i planche z nierdzewnej stali.<br>
-      Stworzone dla tych, którzy nie uznają kompromisów w ogrodzie.
-    </p>
-
-    <div class="signup-wrap">
-      <div class="reward-badge">
-        <span class="reward-badge__icon">🔥</span>
-        <div class="reward-badge__text">
-          <span class="reward-badge__headline">Zapisz się — 20 worków brykietu 2kg + podpałka gratis</span>
-          <span class="reward-badge__sub">Zostaw e-mail i odbierz swój prezent przy pierwszym zamówieniu. Oferta dla zapisanych przed otwarciem sklepu.</span>
-        </div>
-      </div>
-      <form class="signup" id="signup-form" onsubmit="handleSignup(event)">
+    <div class="signup-block">
+      <p class="signup-offer">
+        <strong>Zapisz się i odbierz gratis:</strong> 20 worków brykietu grillowego 2kg + podpałka
+      </p>
+      <form class="signup-row" id="signup-form" onsubmit="handleSignup(event)">
         <input
-          class="signup__input"
+          class="signup-input"
           type="email"
           name="email"
           placeholder="Twój adres e-mail"
           required
+          autocomplete="email"
         />
-        <button class="signup__btn" type="submit">Zapisz się</button>
+        <button class="signup-btn" type="submit">Zapisz się</button>
       </form>
-      <p class="signup__success" id="signup-success">✦ &nbsp; Jesteś na liście. Do zobaczenia po 10 maja!</p>
+      <p class="signup-success" id="signup-success">
+        ✓ &nbsp; Jesteś na liście. Do zobaczenia po 10 maja!
+      </p>
     </div>
-
-  </div>
-
-  <div class="scroll-hint">
-    <span class="scroll-hint__text">Przewiń</span>
-    <div class="scroll-hint__line"></div>
   </div>
 </section>
 
-<!-- =============================================
-     USP — 4 PRZEWAGI
-============================================= -->
-<div class="usp">
-
-  <div class="usp__item reveal d1">
-    <div class="usp__icon"></div>
-    <h3 class="usp__title">Płyta Inox</h3>
-    <p class="usp__body">Smażysz na higienicznej stali nierdzewnej. Zero rdzy, czysty smak i łatwe czyszczenie.</p>
-  </div>
-
-  <div class="usp__item reveal d2">
-    <div class="usp__icon"></div>
-    <h3 class="usp__title">Pełna mobilność</h3>
-    <p class="usp__body">Solidne koła w standardzie. Twój ogień podąża za Tobą, a nie na odwrót.</p>
-  </div>
-
-  <div class="usp__item reveal d3">
-    <div class="usp__icon"></div>
-    <h3 class="usp__title">System „ONE"</h3>
-    <p class="usp__body">Wyjmij środek rusztu i wstaw WOK lub żeliwny kociołek. Jeden system — nieskończone możliwości.</p>
-  </div>
-
-  <div class="usp__item reveal d4">
-    <div class="usp__icon"></div>
-    <h3 class="usp__title">Surowy design</h3>
-    <p class="usp__body">Dojrzewająca w słońcu stal Corten lub elegancka, matowa Czerń. Wybór należy do Ciebie.</p>
-  </div>
-
-</div>
-
-<!-- =============================================
-     O MARCE
-============================================= -->
-<section class="about">
-  <div class="about__inner">
-    <p class="eyebrow reveal">O marce</p>
-    <h2 class="section-title reveal d1">
-      Smart Luxury.<br>Zdefiniuj ogród na nowo.
-    </h2>
-    <p class="section-body reveal d2">
-      MyDeer to polska marka zrodzona z buntu przeciwko bylejakości. Zauważyliśmy,
-      że rynek oferuje tylko dwie skrajności: nietrwałe grille z marketu lub stacjonarne,
-      horrendalnie drogie pomniki. My wchodzimy w środek. Łączymy surowy design ze sprytną
-      inżynierią. Budujemy kompletny ekosystem — od designerskiego paleniska, przez system
-      rusztów, aż po certyfikowane drewno z naszej własnej produkcji.
-      Przygotuj się na zupełnie nowy wymiar gotowania.
+<!-- CONTACT STRIP -->
+<div class="contact-strip">
+  <div class="contact-cell">
+    <p class="contact-cell__label">Showroom</p>
+    <p class="contact-cell__value">
+      My Deer ONE<br>
+      ul. Kruszewska 28<br>
+      16-070 Choroszcz
+      <span class="contact-cell__sub">Odwiedziny po wcześniejszym umówieniu</span>
     </p>
   </div>
-</section>
-
-<!-- =============================================
-     MARQUEE
-============================================= -->
-<div class="marquee-strip" aria-hidden="true">
-  <div class="marquee-strip__track">
-    <div class="marquee-strip__item">Płyta Inox <span>✦</span></div>
-    <div class="marquee-strip__item">Stal Corten <span>✦</span></div>
-    <div class="marquee-strip__item">System ONE <span>✦</span></div>
-    <div class="marquee-strip__item">Born for Fire <span>✦</span></div>
-    <div class="marquee-strip__item">Polska marka <span>✦</span></div>
-    <div class="marquee-strip__item">Start 10 maja <span>✦</span></div>
-    <div class="marquee-strip__item">Pełna mobilność <span>✦</span></div>
-    <div class="marquee-strip__item">Płyta Inox <span>✦</span></div>
-    <div class="marquee-strip__item">Stal Corten <span>✦</span></div>
-    <div class="marquee-strip__item">System ONE <span>✦</span></div>
-    <div class="marquee-strip__item">Born for Fire <span>✦</span></div>
-    <div class="marquee-strip__item">Polska marka <span>✦</span></div>
-    <div class="marquee-strip__item">Start 10 maja <span>✦</span></div>
-    <div class="marquee-strip__item">Pełna mobilność <span>✦</span></div>
+  <div class="contact-cell">
+    <p class="contact-cell__label">Telefon</p>
+    <p class="contact-cell__value">
+      <a href="tel:+48858730940">+48 85 873 09 40</a>
+    </p>
+  </div>
+  <div class="contact-cell">
+    <p class="contact-cell__label">E-mail</p>
+    <p class="contact-cell__value">
+      <a href="mailto:info@mydeer.com.pl">info@mydeer.com.pl</a>
+    </p>
   </div>
 </div>
 
-<!-- =============================================
-     KOLEKCJA
-============================================= -->
-<section class="products">
-  <div class="products__header">
-    <p class="eyebrow reveal">Pierwsze spojrzenie</p>
-    <h2 class="section-title reveal d1">Zobacz kolekcję</h2>
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">
+    <img src="MyDeer born for fire - classic.png" alt="MyDeer Born for Fire" />
   </div>
 
-  <div class="products__grid">
-    <div class="pcard reveal">
-      <img class="pcard__img" src="hf_20260309_153934_6857fc5e-7af5-4556-9d25-7e63c55e1081.png"
-           alt="MyDeer — gotowanie na ogniu w ogrodzie" loading="lazy" />
-      <div class="pcard__caption">
-        <p class="pcard__label">Cztery pory roku — Born for Fire</p>
-      </div>
-    </div>
-    <div class="pcard reveal d1">
-      <img class="pcard__img" src="hf_20260309_153835_08cb23d0-9ae7-4603-ba6a-e62bb536b414.png"
-           alt="MyDeer — palenisko Corten z rusztem" loading="lazy" />
-      <div class="pcard__caption">
-        <p class="pcard__label">Kolekcja — stal kortenowska</p>
-      </div>
-    </div>
-    <div class="pcard reveal d2">
-      <img class="pcard__img" src="hf_20260309_153835_438c2165-b600-4ec7-919e-ff9e12df3b1f.png"
-           alt="MyDeer — palenisko z akcesoriami" loading="lazy" />
-      <div class="pcard__caption">
-        <p class="pcard__label">Kompletne wyposażenie</p>
-      </div>
-    </div>
-    <div class="pcard reveal d3">
-      <img class="pcard__img" src="hf_20260309_154007_2e6bd863-7770-447a-95bf-8f3bc6393a73.png"
-           alt="MyDeer — palenisko w ogrodzie" loading="lazy" />
-      <div class="pcard__caption">
-        <p class="pcard__label">Twój ogród — twój rytm</p>
-      </div>
-    </div>
-  </div>
-
-  <div class="ig-cta reveal">
-    <a class="ig-btn" href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener">
-      <!-- Instagram icon -->
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+  <div class="footer-social">
+    <!-- Instagram -->
+    <a href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener" aria-label="Instagram @mydeer.fire">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
         <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
         <circle cx="12" cy="12" r="4"/>
         <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
       </svg>
-      Śledź nas na Instagramie
+    </a>
+    <!-- Facebook -->
+    <a href="https://www.facebook.com/mydeer.fire/" target="_blank" rel="noopener" aria-label="Facebook MyDeer">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+      </svg>
     </a>
   </div>
-</section>
 
-<!-- =============================================
-     GALERIA
-============================================= -->
-<section class="gallery">
-  <div class="gallery__header">
-    <p class="eyebrow reveal">MyDeer w akcji</p>
-    <h2 class="section-title reveal d1">Galeria</h2>
-  </div>
-
-  <div class="gallery__grid">
-    <div class="gallery__item reveal">
-      <img src="hf_20260309_153542_ac6d1946-2b67-4431-bd01-2c8eb3326617.png" alt="MyDeer — palenisko" loading="lazy" />
-    </div>
-    <div class="gallery__item reveal d1">
-      <img src="hf_20260309_153934_2d8d26f6-d178-4263-8f92-e7b61a942e71.png" alt="MyDeer — kolekcja" loading="lazy" />
-    </div>
-    <div class="gallery__item reveal d2">
-      <img src="hf_20260309_154151_f3fd2fd8-9444-409f-8689-d4d6aef0ee3f.png" alt="MyDeer — okładka STV39" loading="lazy" />
-    </div>
-    <div class="gallery__item reveal d3">
-      <img src="hf_20260309_154422_4fd8114c-1cca-4cf7-8210-32e421ae5e3e.png" alt="MyDeer — detal" loading="lazy" />
-    </div>
-    <div class="gallery__item reveal">
-      <img src="hf_20260309_154422_550927c5-3008-42bf-b1b6-74a486484146.png" alt="MyDeer — palenisko w ogrodzie" loading="lazy" />
-    </div>
-    <div class="gallery__item reveal d1">
-      <img src="hf_20260309_154422_b3690adc-4f55-43b0-a5ae-5fbcac53c097.png" alt="MyDeer — okładka STV36" loading="lazy" />
-    </div>
-    <div class="gallery__item reveal d2">
-      <img src="hf_20260309_153542_ac6d1946-2b67-4431-bd01-2c8eb3326617.png" alt="MyDeer — render produktu" loading="lazy" />
-    </div>
-  </div>
-</section>
-
-<!-- =============================================
-     KONTAKT
-============================================= -->
-<section class="contact">
-  <div class="contact__inner">
-
-    <div class="reveal">
-      <p class="contact__label">Showroom</p>
-      <p class="contact__name">My Deer ONE<br>Choroszcz</p>
-      <p class="contact__address">
-        ul. Kruszewska 28<br>
-        16-070 Choroszcz
-        <em>Odwiedziny po wcześniejszym umówieniu</em>
-      </p>
-    </div>
-
-    <div class="contact__divider"></div>
-
-    <div class="reveal d1">
-      <p class="contact__label">Kontakt</p>
-      <a class="contact__link" href="mailto:info@mydeer.com.pl">
-        info@mydeer.com.pl
-      </a>
-      <a class="contact__phone" href="tel:+48858730940">
-        +48 85 873 09 40
-      </a>
-
-      <div class="social-links">
-        <!-- Facebook -->
-        <a class="social-link" href="https://www.facebook.com/mydeer.fire/" target="_blank" rel="noopener" aria-label="Facebook MyDeer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
-          </svg>
-        </a>
-        <!-- Instagram -->
-        <a class="social-link" href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener" aria-label="Instagram MyDeer">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-            <circle cx="12" cy="12" r="4"/>
-            <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-          </svg>
-        </a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- =============================================
-     FOOTER
-============================================= -->
-<footer>
-  <img
-    class="footer__logo"
-    src="MyDeer born for fire - classic.png"
-    alt="MyDeer Born for Fire"
-  />
-  <p class="footer__copy">&copy; 2026 MyDeer. Wszelkie prawa zastrzeżone.</p>
+  <p class="footer-copy">&copy; 2026 MyDeer. Wszelkie prawa zastrzeżone.</p>
 </footer>
 
 <script>
-/* =============================================
-   FIRE PARTICLES
-============================================= */
-(function () {
-  const canvas = document.getElementById('fire-canvas');
-  const ctx    = canvas.getContext('2d');
-  let W, H;
-
-  function resize() {
-    W = canvas.width  = window.innerWidth;
-    H = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize, { passive: true });
-
-  const COLORS = [
-    [214, 100,  52],
-    [228, 128,  58],
-    [242, 162,  78],
-    [252, 206, 108],
-  ];
-
-  class Ember {
-    constructor(rand) { this.init(rand); }
-    init(rand) {
-      this.x       = Math.random() * W;
-      this.y       = H + 8;
-      this.vx      = (Math.random() - 0.5) * 0.55;
-      this.vy      = -(Math.random() * 1.1 + 0.38);
-      this.size    = Math.random() * 2.2 + 0.4;
-      this.maxLife = Math.random() * 220 + 100;
-      this.life    = rand ? Math.random() * this.maxLife : 0;
-      this.phase   = Math.random() * Math.PI * 2;
-      this.col     = COLORS[Math.floor(Math.random() * COLORS.length)];
-    }
-    update() {
-      this.x += this.vx + Math.sin(this.life * 0.04 + this.phase) * 0.32;
-      this.y += this.vy;
-      this.life++;
-      if (this.life > this.maxLife) this.init(false);
-    }
-    draw() {
-      const t = this.life / this.maxLife;
-      const a = (t < 0.15 ? t / 0.15 : t > 0.65 ? (1 - t) / 0.35 : 1) * 0.55;
-      const r = this.size * (1 - t * 0.55);
-      const [cr, cg, cb] = this.col;
-      ctx.shadowBlur  = 8;
-      ctx.shadowColor = `rgba(${cr},${cg},${cb},${a * 0.5})`;
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, r, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(${cr},${cg},${cb},${a})`;
-      ctx.fill();
-      ctx.shadowBlur = 0;
-    }
-  }
-
-  const embers = Array.from({ length: 70 }, () => new Ember(true));
-
-  (function tick() {
-    ctx.clearRect(0, 0, W, H);
-    embers.forEach(e => { e.update(); e.draw(); });
-    requestAnimationFrame(tick);
-  })();
-})();
-
-/* =============================================
-   PARALLAX
-============================================= */
-(function () {
-  const bg = document.getElementById('hero-bg');
-  let ticking = false;
-  window.addEventListener('scroll', () => {
-    if (!ticking) {
-      requestAnimationFrame(() => {
-        bg.style.transform = `translateY(${window.scrollY * 0.34}px) scale(1.08)`;
-        ticking = false;
-      });
-      ticking = true;
-    }
-  }, { passive: true });
-})();
-
-/* =============================================
-   REVEAL
-============================================= */
-(function () {
-  function makeVisible(el) { el.classList.add('visible'); }
-
-  /* fallback: po 800ms wszystko co nie jest jeszcze widoczne — pokaż */
-  setTimeout(function () {
-    document.querySelectorAll('.reveal:not(.visible)').forEach(makeVisible);
-  }, 800);
-
-  if (!('IntersectionObserver' in window)) {
-    document.querySelectorAll('.reveal').forEach(makeVisible);
-    return;
-  }
-
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) { makeVisible(e.target); io.unobserve(e.target); }
-    });
-  }, { threshold: 0.05, rootMargin: '0px 0px 120px 0px' });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
-})();
-
-/* =============================================
-   SIGNUP — formspree
-============================================= */
 async function handleSignup(e) {
   e.preventDefault();
   const form    = document.getElementById('signup-form');
