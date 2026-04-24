@@ -265,35 +265,21 @@
       gap: 0.6rem;
     }
 
-    .footer__social__icon {
-      display: flex;
+    .footer__ig-link {
+      display: inline-flex;
       align-items: center;
-      justify-content: center;
-      width: 38px;
-      height: 38px;
-      border: 1px solid rgba(255,255,255,0.14);
-      color: rgba(255,255,255,0.42);
-      text-decoration: none;
-      transition: border-color 0.22s, color 0.22s;
-    }
-
-    .footer__social__icon:hover {
-      border-color: rgba(255,255,255,0.5);
-      color: rgba(255,255,255,0.88);
-    }
-
-    .footer__ig-handle {
+      gap: 0.55rem;
       font-family: 'DM Sans', sans-serif;
-      font-weight: 700;
-      font-size: 0.72rem;
-      letter-spacing: 0.18em;
+      font-weight: 500;
+      font-size: 0.78rem;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.30);
+      color: rgba(255,255,255,0.38);
       text-decoration: none;
       transition: color 0.22s;
     }
 
-    .footer__ig-handle:hover { color: rgba(255,255,255,0.65); }
+    .footer__ig-link:hover { color: rgba(255,255,255,0.72); }
 
     .footer__copy {
       font-size: 0.65rem;
@@ -440,18 +426,14 @@
     </svg>
   </div>
 
-  <div class="footer__social">
-    <a class="footer__social__icon" href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener" aria-label="Instagram @mydeer.fire">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
-        <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-        <circle cx="12" cy="12" r="4"/>
-        <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
-      </svg>
-    </a>
-    <a class="footer__ig-handle" href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener">
-      @mydeer.fire
-    </a>
-  </div>
+  <a class="footer__ig-link" href="https://www.instagram.com/mydeer.fire/" target="_blank" rel="noopener">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+      <circle cx="12" cy="12" r="4"/>
+      <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+    </svg>
+    @mydeer.fire
+  </a>
 
   <p class="footer__copy">&copy; 2026 MyDeer. Wszelkie prawa zastrzeżone.</p>
 </footer>
