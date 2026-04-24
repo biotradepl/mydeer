@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MyDeer — Born for Fire | Oficjalny Sklep</title>
-  <meta name="description" content="Mobilne paleniska i planche z nierdzewnej stali. MyDeer — Born for Fire. Oficjalny sklep startuje w marcu." />
+  <title>MY DEER — Start Wkrótce | 05.05</title>
+  <meta name="description" content="MY DEER Born for Fire — sklep startuje 05.05! Zapisz się na przedsprzedaż i odbierz 20 worków brykietu grillowego 2 kg + podpałkę GRATIS." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <!--
@@ -64,9 +64,9 @@
     .hero__bg {
       position: absolute;
       inset: 0;
-      background-image: url('5ea9b011-02ec-4189-8273-0f3274aa08d3.png');
+      background-image: url('hf_20260303_095849_67a23ab3-1af7-4cf1-8acc-2b46f828631f.jpeg');
       background-size: cover;
-      background-position: center center;
+      background-position: center 20%;
       will-change: transform;
     }
 
@@ -75,13 +75,13 @@
       inset: 0;
       background:
         linear-gradient(to bottom,
-          rgba(5,10,10,0.60) 0%,
-          rgba(5,10,10,0.30) 40%,
-          rgba(5,10,10,0.85) 100%),
+          rgba(5,10,10,0.55) 0%,
+          rgba(5,10,10,0.15) 35%,
+          rgba(5,10,10,0.80) 100%),
         linear-gradient(to right,
-          rgba(5,10,10,0.20) 0%,
+          rgba(5,10,10,0.30) 0%,
           transparent 50%,
-          rgba(5,10,10,0.20) 100%);
+          rgba(5,10,10,0.30) 100%);
     }
 
     .hero__glow {
@@ -247,22 +247,75 @@
       line-height: 1.6;
     }
 
+    /* countdown */
+    .countdown {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 2.2rem;
+    }
+    .countdown__unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+    }
+    .countdown__num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 900;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1;
+      min-width: clamp(58px, 9vw, 84px);
+      background: rgba(244,238,217,0.06);
+      border: 1px solid rgba(214,100,52,0.25);
+      padding: 10px 6px 8px;
+      text-align: center;
+      color: var(--creme);
+      letter-spacing: 0.02em;
+    }
+    .countdown__label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.6rem;
+      font-weight: 600;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: rgba(244,238,217,0.35);
+    }
+    .countdown__sep {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(1.6rem, 4vw, 2.6rem);
+      font-weight: 300;
+      color: var(--orange);
+      margin-top: 4px;
+      opacity: .55;
+      align-self: flex-start;
+      padding-top: 8px;
+    }
+
+    /* form */
     .signup {
       display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .signup__row {
+      display: flex;
+      gap: 10px;
     }
 
     .signup__input {
       flex: 1;
-      padding: 1rem 1.4rem;
+      padding: 0.95rem 1.2rem;
       background: rgba(244,238,217,0.07);
       border: 1px solid var(--border);
-      border-right: none;
       color: var(--creme);
       font-family: 'Barlow', sans-serif;
       font-size: 0.9rem;
       outline: none;
       transition: border-color 0.3s, background 0.3s;
       backdrop-filter: blur(12px);
+      width: 100%;
     }
 
     .signup__input::placeholder { color: rgba(244,238,217,0.30); }
@@ -272,21 +325,23 @@
     }
 
     .signup__btn {
-      padding: 1rem 1.6rem;
+      padding: 1.1rem 1.6rem;
       background: var(--orange);
       color: var(--white);
       border: none;
       font-family: 'Barlow Condensed', sans-serif;
       font-weight: 700;
-      font-size: 0.78rem;
+      font-size: 0.82rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       cursor: pointer;
       transition: background 0.25s;
       white-space: nowrap;
+      width: 100%;
     }
 
     .signup__btn:hover { background: #bf5429; }
+    .signup__btn:disabled { opacity: .6; cursor: default; }
 
     .signup__success {
       display: none;
@@ -296,6 +351,7 @@
       text-transform: uppercase;
       color: var(--orange);
       padding: 1.1rem 0;
+      text-align: center;
     }
 
     /* scroll indicator */
@@ -833,11 +889,7 @@
       .usp__item:nth-child(3),
       .usp__item:nth-child(4) { border-top: none; }
 
-      .signup { flex-direction: column; }
-      .signup__input {
-        border-right: 1px solid var(--border);
-        border-bottom: none;
-      }
+      .signup__row { flex-direction: column; }
 
       .products__grid { grid-template-columns: 1fr; grid-template-rows: auto; }
       .pcard:nth-child(n) { grid-column: 1; grid-row: auto; }
@@ -865,7 +917,7 @@
 
   <div class="hero__content">
 
-    <span class="pre-badge">Oficjalny sklep — Start w marcu</span>
+    <span class="pre-badge">Przedsprzedaż — Start 05.05.2026</span>
 
     <div class="logo-wrap">
       <img
@@ -876,32 +928,60 @@
     </div>
 
     <h1 class="hero__headline">
-      <em>Ewolucja ognia.</em><br>Już wkrótce.
+      Start<br><em>Wkrótce</em>
     </h1>
 
     <p class="hero__sub">
-      Mobilne paleniska i planche z nierdzewnej stali.<br>
-      Stworzone dla tych, którzy nie uznają kompromisów w ogrodzie.
+      Zajrzyj tu po <strong style="color:var(--orange);font-weight:600">05.05</strong> —
+      sklep oficjalnie rusza. Zostaw e-mail i odbierz prezent niespodziankę już przy pierwszym zamówieniu.
     </p>
+
+    <!-- countdown -->
+    <div class="countdown" id="countdown">
+      <div class="countdown__unit">
+        <div class="countdown__num" id="cd-days">--</div>
+        <div class="countdown__label">Dni</div>
+      </div>
+      <div class="countdown__sep">:</div>
+      <div class="countdown__unit">
+        <div class="countdown__num" id="cd-hours">--</div>
+        <div class="countdown__label">Godz.</div>
+      </div>
+      <div class="countdown__sep">:</div>
+      <div class="countdown__unit">
+        <div class="countdown__num" id="cd-min">--</div>
+        <div class="countdown__label">Min.</div>
+      </div>
+      <div class="countdown__sep">:</div>
+      <div class="countdown__unit">
+        <div class="countdown__num" id="cd-sec">--</div>
+        <div class="countdown__label">Sek.</div>
+      </div>
+    </div>
 
     <div class="signup-wrap">
       <div class="reward-badge">
-        <span class="reward-badge__icon">🪵</span>
+        <span class="reward-badge__icon">🔥</span>
         <div class="reward-badge__text">
-          <span class="reward-badge__headline">Zapas drewna gratis — tylko dla pierwszych 30 klientów</span>
-          <span class="reward-badge__sub">Zostaw e-mail. W dniu otwarcia wyślemy kod na bezpłatny zapas drewna do pierwszego paleniska.</span>
+          <span class="reward-badge__headline">Zapisz się i otrzymaj GRATIS</span>
+          <span class="reward-badge__sub">
+            20 worków brykietu grillowego 2&nbsp;kg<br>
+            + podpałka biała do grilla i ronnika — gratis przy pierwszym zamówieniu!
+          </span>
         </div>
       </div>
-      <form class="signup" id="signup-form" onsubmit="handleSignup(event)">
-        <input
-          class="signup__input"
-          type="email"
-          placeholder="Twój adres e-mail"
-          required
-        />
-        <button class="signup__btn" type="submit">Chcę kod zniżkowy</button>
+
+      <form class="signup" id="signup-form" action="https://formspree.io/f/mgordkqz" method="POST">
+        <div class="signup__row">
+          <input class="signup__input" type="text" name="name" placeholder="Imię i nazwisko" required />
+          <input class="signup__input" type="tel" name="phone" placeholder="Telefon (opcjonalnie)" />
+        </div>
+        <input class="signup__input" type="email" name="email" placeholder="Twój adres e-mail" required />
+        <input type="hidden" name="_subject" value="Nowy zapis na przedsprzedaż – MY DEER" />
+        <button class="signup__btn" type="submit">Zapisuję się i chcę prezent ✦</button>
       </form>
-      <p class="signup__success" id="signup-success">✦ &nbsp; Jesteś na liście. Do zobaczenia w marcu!</p>
+      <p class="signup__success" id="signup-success">✦ &nbsp; Jesteś na liście! Napiszemy do Ciebie po 05.05 z informacją o starcie i Twoim gratisie.</p>
+      <p class="signup-wrap__hint" style="margin-top:0.8rem">Nie wysyłamy spamu. Możesz wypisać się w każdej chwili.</p>
     </div>
 
   </div>
@@ -973,14 +1053,14 @@
     <div class="marquee-strip__item">System ONE <span>✦</span></div>
     <div class="marquee-strip__item">Born for Fire <span>✦</span></div>
     <div class="marquee-strip__item">Polska marka <span>✦</span></div>
-    <div class="marquee-strip__item">Start w marcu <span>✦</span></div>
+    <div class="marquee-strip__item">Start 05.05 <span>✦</span></div>
     <div class="marquee-strip__item">Pełna mobilność <span>✦</span></div>
     <div class="marquee-strip__item">Płyta Inox <span>✦</span></div>
     <div class="marquee-strip__item">Stal Corten <span>✦</span></div>
     <div class="marquee-strip__item">System ONE <span>✦</span></div>
     <div class="marquee-strip__item">Born for Fire <span>✦</span></div>
     <div class="marquee-strip__item">Polska marka <span>✦</span></div>
-    <div class="marquee-strip__item">Start w marcu <span>✦</span></div>
+    <div class="marquee-strip__item">Start 05.05 <span>✦</span></div>
     <div class="marquee-strip__item">Pełna mobilność <span>✦</span></div>
   </div>
 </div>
@@ -1240,22 +1320,63 @@
 })();
 
 /* =============================================
-   SIGNUP
+   COUNTDOWN  (target: 05.05.2026 00:00 CEST)
 ============================================= */
-function handleSignup(e) {
-  e.preventDefault();
-  const email   = e.target.querySelector('input[type=email]').value.trim();
-  const form    = document.getElementById('signup-form');
-  const success = document.getElementById('signup-success');
+(function () {
+  var target = new Date('2026-05-05T00:00:00+02:00').getTime();
+  var days   = document.getElementById('cd-days');
+  var hours  = document.getElementById('cd-hours');
+  var mins   = document.getElementById('cd-min');
+  var secs   = document.getElementById('cd-sec');
+  function pad(n) { return n < 10 ? '0' + n : '' + n; }
+  function tick() {
+    var diff = target - Date.now();
+    if (diff <= 0) {
+      days.textContent = hours.textContent = mins.textContent = secs.textContent = '00';
+      return;
+    }
+    days.textContent  = pad(Math.floor(diff / 86400000));
+    hours.textContent = pad(Math.floor((diff % 86400000) / 3600000));
+    mins.textContent  = pad(Math.floor((diff % 3600000)  / 60000));
+    secs.textContent  = pad(Math.floor((diff % 60000)    / 1000));
+  }
+  tick();
+  setInterval(tick, 1000);
+})();
 
-  window.location.href =
-    'mailto:info@mydeer.com.pl'
-    + '?subject=' + encodeURIComponent('Chcę kod zniżkowy — MyDeer')
-    + '&body='    + encodeURIComponent('Proszę o kod zniżkowy na zapas drewna do pierwszego paleniska.\n\nMój adres e-mail: ' + email);
+/* =============================================
+   SIGNUP — Formspree AJAX
+============================================= */
+(function () {
+  var form    = document.getElementById('signup-form');
+  var success = document.getElementById('signup-success');
 
-  form.style.display    = 'none';
-  success.style.display = 'block';
-}
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var btn = form.querySelector('.signup__btn');
+    btn.textContent = 'Wysyłanie…';
+    btn.disabled = true;
+
+    fetch(form.action, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { 'Accept': 'application/json' }
+    })
+    .then(function (res) {
+      if (res.ok) {
+        form.style.display    = 'none';
+        success.style.display = 'block';
+      } else {
+        btn.textContent = 'Spróbuj ponownie';
+        btn.disabled = false;
+      }
+    })
+    .catch(function () {
+      btn.textContent = 'Spróbuj ponownie';
+      btn.disabled = false;
+    });
+  });
+})();
 </script>
 </body>
 </html>
